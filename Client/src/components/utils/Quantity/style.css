@@ -1,0 +1,20 @@
+
+.btn{
+    background-color: white;
+    color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    transition: all ease-in-out 500ms;
+    border:1px solid lightgray;
+}
+
+.btn:hover{
+    color:blue;
+    border:1.4px solid blue
+}
