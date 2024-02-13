@@ -5,20 +5,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { userContext } from './context/userContext';
 import { BrowserRouter } from 'react-router-dom';
-import UserContextProvider from './context/UserContextProvider';
+import UserContextProvider from './providers/UserContextProvider';
+import CartUpdateProvider from './providers/CartUpdateProvider';
+import CartItemCountProvider from './providers/CartItemCountProvider';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 
 root.render(
-  <UserContextProvider>
-  <React.StrictMode>
-   <BrowserRouter>
-    <App/>
-  </BrowserRouter>
-  </React.StrictMode>
-  </UserContextProvider>
+  <CartUpdateProvider>
+    <CartItemCountProvider>
+      <UserContextProvider>
+        <React.StrictMode>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </React.StrictMode>
+      </UserContextProvider>
+    </CartItemCountProvider>
+  </CartUpdateProvider>
 
 );
 

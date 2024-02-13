@@ -1,4 +1,4 @@
-
+const User = require("../models/User");
 
 const getUser = async(req,res)=>{
     console.log("in get user");
@@ -6,6 +6,8 @@ const getUser = async(req,res)=>{
 
 }
 
+
 module.exports ={
     getUser,
+ 
 }

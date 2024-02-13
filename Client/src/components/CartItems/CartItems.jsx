@@ -3,7 +3,7 @@ import { Container } from './style'
 import CartCard from '../CartCard/CartCard'
 
 
-function CartItems({mobiles,isItemRemoved , setIsItemRemved}) {
+function CartItems({mobiles,}) {
 console.log("mobiles ",mobiles)
 
   // if(mobiles.length <= 0 ){
@@ -15,7 +15,6 @@ console.log("mobiles ",mobiles)
     <Container>
     {mobiles.map((mobile)=>{
       return <CartCard 
-      setIsItemRemved={setIsItemRemved} isItemRemoved={isItemRemoved}
       mobile={mobile}/>
     })}
     </Container>

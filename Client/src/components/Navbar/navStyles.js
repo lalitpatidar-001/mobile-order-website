@@ -74,17 +74,22 @@ mr-[10px]
 export const CartBox = styled.div`${tw`
 text-blue-800
 cursor-pointer
+
 `}`
 
 export const CartIndicator = styled.span`
 position: relative;
 top:-18px;
-font-weight: bold;
+font-weight: 600;
 right: 5px;
 color: white;
-background-color: blue;
+background-color: #F97316;
 border-radius: 50%;
-padding: 2px;
+font-size: 12px;
+padding: 1px;
+padding-left :4px;
+padding-right :4px;
+
 `
 
 export const Button = styled.button`

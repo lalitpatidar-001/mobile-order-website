@@ -20,6 +20,7 @@ const mobileRouter = require('./routers/mobile');
 const specsRouter = require('./routers/specs');
 const cartRouter = require('./routers/cart');
 const quantityRouter = require('./routers/quantity');
+const addressRouter = require('./routers/address');
 
 
 // routes
@@ -29,6 +30,7 @@ app.use('/api/mobile',mobileRouter);
 app.use('/api/specs',specsRouter);
 app.use('/api/cart',cartRouter);
 app.use('/api/quantity',quantityRouter);
+app.use('/api/address',addressRouter);
 
 // Database configuration
 mongoose.connect(process.env.DB_URL)

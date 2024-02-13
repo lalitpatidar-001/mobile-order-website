@@ -21,7 +21,7 @@ p-2
 text-[#878787]
 font-[600]
 `}
-border-bottom:1px solid lightgray
+border-bottom:1px solid lightgray;
 `
 
 export const Details = styled.div`
@@ -32,7 +32,7 @@ gap-3
 p-3
 
 `}
-border-bottom:1px solid lightgray
+border-bottom:1px solid lightgray;
 `
 export const Item = styled.div`
 ${tw`
@@ -43,6 +43,11 @@ justify-between
 
 export const ItemName = styled.span`${tw`
 
+`}`
+export const Discount = styled.span`${tw`
+text-green-700
+flex
+items-center
 `}`
 export const Charges = styled.span`${tw`
 
@@ -57,7 +62,7 @@ px-3
 py-3
 font-[600]
 `}
-border-bottom:1px solid lightgray
+border-bottom:1px solid lightgray;
 `
 
 export const TotalSpan = styled.span`${tw`

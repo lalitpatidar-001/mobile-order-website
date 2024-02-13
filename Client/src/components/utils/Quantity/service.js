@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-export  async function increaseQuantity(cartId ,quantity , setIsLoading,setQuantity,setMessage,message){
+export  async function increaseQuantity(cartId ,quantity , setIsLoading,setQuantity,setMessage,message,isQuantityUpdated ,setIsQuantityUpdated){
     try{
         setIsLoading(true)
         const response = await axios.post(`http://localhost:5000/api/quantity/increase/${cartId}`);
         console.log(response);
         if(response.status===200 && response.data.isIncreased===true){
             setQuantity(response.data.quantity);
-            setMessage("quantity increased , now ",quantity)
+            setMessage("quantity increased , now ",quantity);
+            setIsQuantityUpdated(!isQuantityUpdated)
             console.log("message ",message);
         }
         
@@ -28,7 +29,7 @@ export  async function increaseQuantity(cartId ,quantity , setIsLoading,setQuant
 }
 
 
-export  async function decreaseQuantity(cartId ,quantity , setIsLoading,setQuantity,setMessage,message){
+export  async function decreaseQuantity(cartId ,quantity , setIsLoading,setQuantity,setMessage,message,isQuantityUpdated ,setIsQuantityUpdated){
     try{
         setIsLoading(true)
         const response = await axios.post(`http://localhost:5000/api/quantity/decrease/${cartId}`);
@@ -36,6 +37,7 @@ export  async function decreaseQuantity(cartId ,quantity , setIsLoading,setQuant
         if(response.status===200 && response.data.isDecreased===true){
             setQuantity(response.data.quantity);
             setMessage("quantity decreased , now ",quantity)
+            setIsQuantityUpdated(!isQuantityUpdated)
             console.log("message ",message);
         }
         

@@ -4,11 +4,13 @@ import tw from 'twin.macro';
 export const Container = styled.div`${tw`
  flex
  m-0
- p-0
+ p-2
  mt-[50px]
  bg-[#F0F2F5]
  w-[100wh]
  relative
+ gap-2
+ 
 
 `}
 

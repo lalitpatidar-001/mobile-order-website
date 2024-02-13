@@ -26,10 +26,10 @@ function Filters({filteredMobiles, setFilteredMobiles}) {
         const fetchFilteredMobiles = async () => {
           try {
             const response = await fetch(
-              `http://localhost:5000/api/mobile/mobiles/filter?model=${model}&price=${priceRange[1]}&brand=${brand}&processor=${processor}&os=${os}&ram=${ram}&rom=${rom}`
+              `http://localhost:5000/api/mobile/filtered?model=${model}&price=${priceRange[1]}&brand=${brand}&processor=${processor}&os=${os}&ram=${ram}&rom=${rom}`
             );
             const data = await response.json();
-            setFilteredMobiles(data);
+            setFilteredMobiles(data.mobiles);
             console.log(data)
           } catch (error) {
             console.error('Error fetching filtered mobiles:', error);
@@ -69,7 +69,7 @@ function Filters({filteredMobiles, setFilteredMobiles}) {
           />
           <PriceRange>
             <Min>{priceRange[0]}</Min>
-            <Max>{priceRange[1]}</Max>
+            <Max>{priceRange[1]?.toLocaleString('en-IN')}</Max>
           </PriceRange>
           <hr />
           <SelectDiv>
@@ -78,39 +78,42 @@ function Filters({filteredMobiles, setFilteredMobiles}) {
             <hr />
             <label htmlFor="" id="processor" value={processor} onChange={(e) => setProcessor(e.target.value)}>Processor</label>
             <SelectTag name="processor" value={processor} id="processor" onChange={(e) => (setProcessor(e.target.value))}>
+              <option value="">any</option>
               <option value="kirin">Kirin</option>
-              <option value="Snapdragon">Snapdragon</option>
-              <option value="A14 Bionic">A14 Bionic</option>
-              <option value="A15 Bionic">A15 Bionic</option>
+              <option value="snapdragon">Snapdragon</option>
+              <option value="a14 Bionic">A14 Bionic</option>
+              <option value="a15 Bionic">A15 Bionic</option>
             </SelectTag>
           </SelectDiv>
           <hr />
           <SelectDiv>
             <label>OS</label>
             <SelectTag name="os" id="os" value={os} onChange={(e) => setOs(e.target.value)}>
-              <option value="IOS">IOS</option>
-              <option value="Android">Android</option>
+              <option value="">any</option>
+              <option value="ios">IOS</option>
+              <option value="android">Android</option>
             </SelectTag>
           </SelectDiv>
           <hr />
           <SelectDiv>
             <label>Ram</label>
             <SelectTag name="ram" id="ram" value={ram} onChange={(e) => setRam(e.target.value)}>
-              <option value="">In Gb</option>
-              <option value="4 gb">4 Gb</option>
-              <option value="3 gb">3 gb</option>
-              <option value="2 gb">2 Gb</option>
-              <option value="8 gb">8 Gb</option>
+              <option value="">any</option>
+              <option value="4">4 Gb</option>
+              <option value="3">3 gb</option>
+              <option value="2">2 Gb</option>
+              <option value="8">8 Gb</option>
             </SelectTag>
           </SelectDiv>
           <hr />
           <SelectDiv>
             <label>Rom</label>
             <SelectTag name="rom" id="rom" value={rom} onChange={(e) => setRom(e.target.value)}>
-              <option value="32 gb">32 Gb</option>
-              <option value="64 gb">64 Gb</option>
-              <option value="128 gb">128 Gb</option>
-              <option value="256 gb">256 Gb</option>
+              <option value="">any</option>
+              <option value="32">32 Gb</option>
+              <option value="64">64 Gb</option>
+              <option value="128">128 Gb</option>
+              <option value="256">256 Gb</option>
             </SelectTag>
           </SelectDiv>
 

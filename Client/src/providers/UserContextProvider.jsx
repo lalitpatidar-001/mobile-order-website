@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { userContext } from './userContext';
+import { userContext } from '../context/userContext';
 
 function UserContextProvider({children}) {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {

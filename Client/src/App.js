@@ -6,6 +6,7 @@ import Registratoin from './pages/Registration/Registratoin';
 import { userContext } from './context/userContext';
 import Mobile from './pages/Mobile/Mobile';
 import Cart from './pages/Cart/Cart';
+import CheckOut from './pages/CheckOut/CheckOut';
 
 function App() {
   const { isLoggedIn } = useContext(userContext);
@@ -26,6 +27,7 @@ function App() {
       <Route element={<ProtectedRoute/>}>
           <Route path='/mobile/:id' element={<Mobile/>}/>
           <Route path='/cart/:id' element={<Cart/>}/>
+          <Route path='/checkout/:id' element={<CheckOut/>}/>
       </Route>
     </Routes>
     

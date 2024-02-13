@@ -6,14 +6,20 @@ import { Link } from 'react-router-dom';
 import photo from './phone.png'
 import { userContext } from '../../context/userContext';
 import axios from 'axios'
+import { cartUpdateContext } from '../../context/cartUpdateContext';
 
 function MobileCart({mobile}) {
     console.log("mobile in mobilecart ",mobile);
 
     const { isLoggedIn } = useContext(userContext);
+    const { isItemAdded ,setIsItemAdded } = useContext(cartUpdateContext);
     const [isInCart, setIsInCart] = useState(false);
     const [added , setAdded] = useState(false);
 // console.log(isLoggedIn ," in mobile")
+
+const convertInNumber = (numberString)=>{
+  return parseInt(numberString, 10).toLocaleString('en-IN');
+}
 
 
 const discount = Math.round((1 - (mobile.price / mobile.actualPrice)) * 100);
@@ -30,6 +36,7 @@ const handleAddToCartClick = (event, mobileId) => {
         console.log(response.data)
         if(response.status ==201){
             setAdded(!added);
+            setIsItemAdded(!isItemAdded)
         }
        } catch (error) {
         console.log(error);
@@ -67,7 +74,7 @@ const handleAddToCartClick = (event, mobileId) => {
                 </Left>
                 <Middle>
                     <ModelandRating>
-                    <Heading>{mobile.modelName}</Heading>
+                    <Heading>{mobile.modelName}(Black Color)</Heading>
                     <Rating>4.3 <GradeOutlinedIcon /></Rating>
                     </ModelandRating>
                     <Features>
@@ -81,12 +88,12 @@ const handleAddToCartClick = (event, mobileId) => {
                 </Middle>
                 <Right>
                     <PriceDiv>
-                        <Price><CurrencyRupeeOutlinedIcon style={{ fontSize: 22 }}/>{mobile.price}</Price>
+                        <Price><CurrencyRupeeOutlinedIcon style={{ fontSize: 22 }}/>{convertInNumber(mobile.price)}</Price>
                         <DiscountDiv>
                             <OriginalPrice>
                             <CurrencyRupeeOutlinedIcon style={{ fontSize: 14 }}/>
-                            {mobile.actualPrice}</OriginalPrice>
-                            <DiscountOff> {discount}% off</DiscountOff>
+                            {convertInNumber(mobile.actualPrice)}</OriginalPrice>
+                            <DiscountOff> {discount?.toLocaleString('en-IN')}% off</DiscountOff>
                         </DiscountDiv>
                     </PriceDiv>
                     {!isInCart?<AddToCartButton onClick={(event) => handleAddToCartClick(event, mobile.specId)}>ADD TO CART</AddToCartButton>

@@ -6,9 +6,11 @@ import { userContext } from '../../../context/userContext';
 import axios from 'axios';
 import './style.css'
 import { Link } from 'react-router-dom';
+import { cartUpdateContext } from '../../../context/cartUpdateContext';
 
 function Buttons({ specId,newRam,newRom, noCombination }) {
   const { isLoggedIn } = useContext(userContext);
+  const { isItemAdded ,setIsItemAdded } = useContext(cartUpdateContext);
   const [isInCart, setIsInCart] = useState(false);
   console.log("noCombination ", noCombination);
   console.log("specId ->", specId);
@@ -17,6 +19,7 @@ function Buttons({ specId,newRam,newRom, noCombination }) {
     try {
       const response = await axios.post(`http://localhost:5000/api/cart/add/${isLoggedIn._id}`, { specId });
       setIsInCart(true);
+      setIsItemAdded(!isItemAdded)
       console.log(response.data)
     } catch (error) {
       console.log(error);

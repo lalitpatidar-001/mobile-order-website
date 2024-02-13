@@ -74,8 +74,8 @@ const getMobile = async (req, res) => {
         // console.log("called")
         // console.log("req,query  ", req.query)
         // console.log("ram->" ,ram , "rom->",rom)
-        rom=  parseInt(rom);
-        ram=  parseInt(ram);
+        rom = parseInt(rom);
+        ram = parseInt(ram);
         // console.log(ram , " " ,rom)
         // Find the mobile document by ID
         const mobile = await Mobile.findOne({ _id: mobileId });
@@ -83,7 +83,7 @@ const getMobile = async (req, res) => {
         // Filter specs based on the provided RAM and ROM
         const matchingSpecs = mobile.specs.filter((spec) => {
             // console.log(spec.ram , ram)
-            return spec.ram === ram  && spec.rom === rom;
+            return spec.ram === ram && spec.rom === rom;
         });
         if (matchingSpecs.length === 0) {
             // If no matching spec is found, return a 404 response
@@ -97,7 +97,7 @@ const getMobile = async (req, res) => {
         const combinedData = {
             ...mobile.toObject(),
             ...matchedSpec.toObject(),
-            specId:matchedSpec._id,
+            specId: matchedSpec._id,
         };
 
         // Return the combined data in the response
@@ -109,11 +109,87 @@ const getMobile = async (req, res) => {
 };
 
 
+// get mobile by filete
+const getFilteredMobile = async (req, res) => {
+    const { model, price, brand, processor, os, ram, rom } = req.query;
+    console.log("query", req.query);
+
+    const filters = {};
+    const specsFilters = {};
+    if (model) filters.modelName = { $regex: new RegExp(model, 'i') };
+    if (brand) filters.brand = { $regex: new RegExp(brand, 'i') };
+    if (processor) filters.processor = processor;
+    if (os) filters.os = os;
+    if (price) {
+        specsFilters.price = { $lte: price };
+    }
+    if (ram) specsFilters.ram = ram;
+    if (rom) specsFilters.rom = rom;
+
+    console.log("filters", filters)
+    console.log("specsFilters", specsFilters)
+
+    try {
+        // get mobiles by filter
+        const mobiles = await Mobile.find(filters);
+        console.log("mobiles->", mobiles)
+        // get specs
+        const combinedMobiles = [];
+
+        for (const mobile of mobiles) {
+            for (const spec of mobile.specs) {
+                // getting data for each specs
+                const specData = await Specs.findOne({ _id: spec._id, ...specsFilters });
+
+                console.log("specData->", specData)
+                if (!specData) continue;
+
+                // creating object from combined object
+                const combinedData = {
+                    // from mobile schema
+                    _id: mobile._id,
+                    modelNumber: mobile.modelNumber,
+                    modelName: mobile.modelName,
+                    brand: mobile.brand,
+                    display: mobile.display,
+                    frontCamera: mobile.frontCamera,
+                    backCamera: mobile.backCamera,
+                    battery: mobile.battery,
+                    processor: mobile.processor,
+                    os: mobile.os,
+                    specs: mobile.specs,
+
+                    // from specs schema
+                    specId: spec._id,
+                    ram: specData.ram,
+                    rom: specData.rom,
+                    price: specData.price,
+                    actualPrice: specData.actualPrice,
+                    stocks: specData.stocks,
+
+                };
+
+                // Adding the combined data object to the array for each specs 
+                combinedMobiles.push(combinedData);
+            }
+        }
+
+        console.log("mobiles", combinedMobiles)
+        return res.status(200).json({ msg: "mobile retrieved", mobiles: combinedMobiles })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ msg: "internal server error" });
+    }
+
+}
+
 
 module.exports = {
     createMobile,
     getMobile,
     getAllMobiles,
+    getFilteredMobile
 };
 
 

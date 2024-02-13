@@ -10,11 +10,21 @@
     display: flex;
     justify-content: center;
     justify-items: center;
-    transition: all ease-in-out 500ms;
+    transition: all ease-in-out 100ms;
     border:1px solid lightgray;
+    cursor: pointer;
 }
 
 .btn:hover{
     color:blue;
     border:1.4px solid blue
+}
+
+button:disabled {
+    background-color: lightgray;
+    color: lightgray;
+}
+button:disabled:hover {
+    color: lightgray;
+    border:1px solid lightgray;
 }
