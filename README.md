@@ -27,17 +27,28 @@
 ```shell
 git clone git@github.com:lalitpatidar-001/mobile-order-website.git
 ```
-##Client Setup
+
+* Enoronment setup - create .env file in root of api and provide below variable values
 ```shell
-cd client
-npm install
+PORT=5000
+DB_URL = 
+CRYPTO_KEY = 
+JWT_ACCESS_KEY = 
+JWT_REFRESH_KEY = 
 ```
-##Server Setup
 
-
+* Server setup
 ```shell
 cd Api
 npm install
+npm start
+```
+
+* Client Setup
+```shell
+cd client
+npm install
+npm start
 ```
 
 
