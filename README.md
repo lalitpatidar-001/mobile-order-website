@@ -50,7 +50,7 @@ cd client
 npm install
 npm start
 ```
-
+Done with setup 😊😊
 
 
  
