@@ -22,17 +22,19 @@
 - [Nodejs](https://nodejs.org/en/download)
 - [Mongodb](https://www.mongodb.com/docs/manual/administration/install-community/)
 
-## Installation Guide
+### Installation Guide
 
 ```shell
 git clone git@github.com:lalitpatidar-001/mobile-order-website.git
 ```
-Client Setup
+##Client Setup
 ```shell
 cd client
 npm install
 ```
-Server Setup
+##Server Setup
+
+
 ```shell
 cd Api
 npm install
