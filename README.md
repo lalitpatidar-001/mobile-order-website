@@ -25,8 +25,19 @@
 ## Installation Guide
 
 ```shell
-git clone https://github.com/lalitpatidar-001/mobile-order-website
-cd chat-app-react-nodejs
+git clone git@github.com:lalitpatidar-001/mobile-order-website.git
 ```
+Client Setup
+```shell
+cd client
+npm install
+```
+Server Setup
+```shell
+cd Api
+npm install
+```
+
+
 
  
