@@ -7,30 +7,31 @@ import { userContext } from './context/userContext';
 import Mobile from './pages/Mobile/Mobile';
 import Cart from './pages/Cart/Cart';
 import CheckOut from './pages/CheckOut/CheckOut';
+import Order from './pages/Order/Order';
+import SingleOrder from './pages/SingleOrder/SingleOrder';
 
 function App() {
   const { isLoggedIn } = useContext(userContext);
 
-  const ProtectedRoute=()=>{
-    return isLoggedIn ? <Outlet/>: <Navigate to="/login"/> 
+  const ProtectedRoute = () => {
+    return isLoggedIn ? <Outlet /> : <Navigate to="/login" />
   }
 
   return (
     <Routes>
-      <Route path="/" element={isLoggedIn ? <Home /> : <Login/>} />
+      <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
       <Route path="/register" element={<Registratoin />} />
-      <Route path="/login" element={isLoggedIn ?<Home /> : <Login/>} />
-      <Route
-        path="/home"
-        element={isLoggedIn ? <Home /> : <Navigate to="/" replace />}
-      />
-      <Route element={<ProtectedRoute/>}>
-          <Route path='/mobile/:id' element={<Mobile/>}/>
-          <Route path='/cart/:id' element={<Cart/>}/>
-          <Route path='/checkout/:id' element={<CheckOut/>}/>
+      <Route path="/login" element={isLoggedIn ? <Home /> : <Login />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/" replace />} />
+        <Route path='/mobile/:id' element={<Mobile />} />
+        <Route path='/cart/:id' element={<Cart />} />
+        <Route path='/checkout/:id' element={<CheckOut />} />
+        <Route path='/order/:id' element={<Order />} />
+        <Route path='/single-order/:orderId' element={<SingleOrder />} />
       </Route>
     </Routes>
-    
+
   );
 }
 

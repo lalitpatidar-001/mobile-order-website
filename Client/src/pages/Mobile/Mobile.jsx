@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from './style'
+import { Container, InfoContainer } from './style'
 import ImageCard from '../../components/ImageCard/ImageCard'
 import DetailCard from '../../components/DetailCard/DetailCard'
 import Navbar from '../../components/Navbar/Navbar';
 import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
+import Reviews from '../../components/Reviews/Reviews';
+import { Divider } from '@mui/material';
 
 const Mobile = () => {
   const {id} = useParams();
@@ -66,7 +68,11 @@ const Mobile = () => {
     <Navbar/>
     <Container>
             <ImageCard/>
-            <DetailCard mobile={mobileData} newRam={newRam} newRom={newRom} noCombination={noCombination}  setNewRam={setNewRam} setNewColor={setNewColor} setNewRom={setNewRom}/>
+           <InfoContainer >
+           <DetailCard mobile={mobileData} newRam={newRam} newRom={newRom} noCombination={noCombination}  setNewRam={setNewRam} setNewColor={setNewColor} setNewRom={setNewRom}/>
+
+           {!noCombination && <Reviews specsId={mobileData.specId}/>}
+           </InfoContainer>
     </Container>
     </>
   )

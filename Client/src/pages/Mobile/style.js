@@ -9,3 +9,10 @@ export const Container = styled.div`${tw`
  gap-[1px]
  
 `}`;
+
+export const InfoContainer = styled.div`${
+    tw`
+    flex flex-col 
+    flex-[3]
+    `
+}`

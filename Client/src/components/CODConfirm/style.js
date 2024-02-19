@@ -53,7 +53,7 @@ export const Input = styled.input`${tw`
  outline-none
  rounded-[2px]
 `}
-border:1px solid gray
+border:1px solid gray;
 `;
 export const ConfirmButton = styled.button`${tw`
  p-2
@@ -67,7 +67,16 @@ export const ConfirmButton = styled.button`${tw`
  font-semibold
  rounded-[2px]
  cursor-pointer
+ flex flex-col
+ items-center
 `}
-
 `
 
+export const ButtonText = styled.span`${tw`
+
+
+`}`;
+export const ButtonAmount = styled.span`${tw`
+
+flex items-center
+`}`;

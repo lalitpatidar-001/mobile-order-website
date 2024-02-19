@@ -7,11 +7,14 @@ import { userContext } from '../../context/userContext';
 import { cartItemCountContext } from '../../context/cartItemCountContext';
 import axios from 'axios';
 import { cartUpdateContext } from '../../context/cartUpdateContext';
+import ProfileToggle from './utils/profileToggle/ProfileToggle';
+import Menu from './utils/profile/Menu';
 
 function Navbar() {
     const { isLoggedIn, setIsLoggedIn } = useContext(userContext);
     const {cartItemCount , setCartItemCount} = useContext(cartItemCountContext);
     const { isItemAdded  } = useContext(cartUpdateContext);
+    const [profileOpen , setProfileOpen] = useState(false)
     console.log("isLoggedIn " , isLoggedIn)
     const navigate = useNavigate();
 
@@ -57,9 +60,11 @@ function Navbar() {
                         {cartItemCount>0 &&<CartIndicator >{cartItemCount}</CartIndicator>}
                         </CartBox>
                     </Link>
-                    <Button onClick={handleLogoutClick}>Logout</Button>
+                    {/* <Button onClick={handleLogoutClick}>Logout</Button> */}
+                    <ProfileToggle profileOpen={profileOpen} setProfileOpen={setProfileOpen}/>
                 </RightContainer>
             </Wrapper>
+           {profileOpen && <Menu profileOpen={profileOpen} setProfileOpen={setProfileOpen} />}
         </Container>
     )
 }

@@ -9,7 +9,7 @@ import { Error } from './style';
 
 function DetailCard({  noCombination, newRom, newRam, setNewRam, setNewColor, setNewRom, mobile }) {
 
-
+console.log("mobile-->",mobile)
 
   const [uniqueRams, setUniqueRams] = useState([]);
   const [uniqueRoms, setUniqueRoms] = useState([]);

@@ -21,6 +21,8 @@ const specsRouter = require('./routers/specs');
 const cartRouter = require('./routers/cart');
 const quantityRouter = require('./routers/quantity');
 const addressRouter = require('./routers/address');
+const reviewRouter = require("./routers/review");
+const orderRouter = require("./routers/order");
 
 
 // routes
@@ -31,6 +33,8 @@ app.use('/api/specs',specsRouter);
 app.use('/api/cart',cartRouter);
 app.use('/api/quantity',quantityRouter);
 app.use('/api/address',addressRouter);
+app.use('/api/review',reviewRouter);
+app.use('/api/order',orderRouter);
 
 // Database configuration
 mongoose.connect(process.env.DB_URL)
@@ -38,6 +42,6 @@ mongoose.connect(process.env.DB_URL)
 .catch((error)=>console.log(error))
 
 // server configuration
-app.listen(5000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log('server is running');
 })

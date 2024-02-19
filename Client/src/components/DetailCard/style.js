@@ -6,7 +6,7 @@ ${tw`
   flex 
   flex-col
   w-full
- flex-[3]
+
 `
     }`
 
@@ -79,7 +79,7 @@ capitalize
 `}`
 
 export const AddToCartButton = styled.div`${tw`
-md:mb-[15px]
+
 p-2
 bg-blue-500
 rounded

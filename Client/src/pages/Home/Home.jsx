@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+     <Navbar/>
       <Container>
 
       <Filters setFilteredMobiles={setFilteredMobiles} filteredMobiles={filteredMobiles}/>

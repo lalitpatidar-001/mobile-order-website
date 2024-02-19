@@ -4,18 +4,19 @@ import PriceDetails from '../../components/PriceDetails.jsx/PriceDetails'
 import Navbar from '../../components/Navbar/Navbar'
 import AddAddress from '../../components/AddAddress/AddAddress'
 import Addresses from '../../components/Addresses/Addresses'
-import AddressToggle from '../../components/AddressToggle/AddressToggle'
 import axios from 'axios'
 import { userContext } from '../../context/userContext'
-import PaymentMode from '../../components/PaymentMode/PaymentMode'
+import PaymentMode from '../../components/PaymentMode/PaymentMode.jsx'
+import AddressToggle from '../../components/utils/AddressToggle/AddressToggle.jsx'
 
 function CheckOut() {
   const { isLoggedIn } = useContext(userContext);
-
   const [isNewAddressToggled, setIsNewAddressToggled] = useState(false);
   const [isAddressAdded, setIsAddressAdded] = useState(false);
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0)
   const [addresses, setAddresses] = useState([]);
+
+  const [deliveryAddress , setDeliveryAddress] = useState("");
 
   useEffect(() => {
     console.log(selectedAddressIndex)
@@ -63,7 +64,9 @@ function CheckOut() {
             <Head>Choose Delivery Address</Head>
             <AddressWrapper>
               {addresses.map((address) => {
-                return <Addresses key={address._id} address={address}
+                return <Addresses
+                  deliveryAddress={deliveryAddress} setDeliveryAddress={setDeliveryAddress}
+                 key={address._id} address={address}
                   setSelectedAddressIndex={setSelectedAddressIndex} selectedAddressIndex={selectedAddressIndex} />
               })}
             </AddressWrapper>
@@ -81,8 +84,8 @@ function CheckOut() {
 
         {/* payment mode */}
         <PaymentModeWrapper>
-              <Head>Payment Mode</Head>
-              <PaymentMode/>
+              <Head >Payment Mode</Head>
+              {deliveryAddress.length>0 && <PaymentMode/>}
         </PaymentModeWrapper>
 
 

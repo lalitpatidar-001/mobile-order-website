@@ -9,7 +9,7 @@ export const Container = styled.div`${tw`
  fixed
  top-[0px]
  bg-white
- z-50
+ z-40
 
 `}`;
 export const Wrapper = styled.div`${tw`
